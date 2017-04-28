@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry location="/Users/zcfrank1st/.m2/repository/mysql/mysql-connector-java/5.1.37/mysql-connector-java-5.1.37.jar"/>
+    <context id="MysqlTables" targetRuntime="MyBatis3">
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.33.234:3308/item"
+                        userId="root"
+                        password="';lk][po">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.chaos.spring.thrift.module.db.model.gen" targetProject="/Users/zcfrank1st/git/spring-thrift-demo/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.chaos.spring.thrift.module.db.mapper.gen" targetProject="/Users/zcfrank1st/git/spring-thrift-demo/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.chaos.spring.thrift.module.db.mapper.gen" targetProject="/Users/zcfrank1st/git/spring-thrift-demo/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--<table tableName="home_flow">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+            <!--<columnOverride column="type" javaType="Integer"/>-->
+            <!--<columnOverride column="is_valid" javaType="Integer"/>-->
+            <!--<columnOverride column="create_time" javaType="String"/>-->
+            <!--<columnOverride column="update_time" javaType="String"/>-->
+        <!--</table>-->
+        <!--<table tableName="host"/>-->
+        <!--<table tableName="host_coin_record">-->
+            <!--<generatedKey column="ID" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>-->
+        <!--</table>-->
+        <!--<table tableName="host_item"/>-->
+        <!--<table tableName="host_order">-->
+            <!--<generatedKey column="order_id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>-->
+        <!--</table>-->
+        <!--<table tableName="host_type">-->
+            <!--<generatedKey column="host_type_id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>-->
+        <!--</table>-->
+        <!--<table tableName="room">-->
+            <!--<generatedKey column="room_id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>-->
+        <!--</table>-->
+        <!--<table tableName="room_host"/>-->
+        <!--<table tableName="room_type"/>-->
+
+        <table tableName="item_info"/>
+    </context>
+</generatorConfiguration> 
