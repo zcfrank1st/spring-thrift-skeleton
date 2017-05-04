@@ -5,6 +5,10 @@ import com.chaos.spring.thrift.config.DbConfig;
 import com.chaos.spring.thrift.config.ApplicationConfig;
 import com.chaos.spring.thrift.config.MqConfig;
 import com.chaos.spring.thrift.define.gen.Demo;
+import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
+import org.apache.rocketmq.client.consumer.listener.ConsumeOrderlyStatus;
+import org.apache.rocketmq.client.consumer.listener.MessageListenerOrderly;
+import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.server.TNonblockingServer;
 import org.apache.thrift.server.TServer;
@@ -25,10 +29,21 @@ import org.springframework.context.annotation.Import;
 @ComponentScan
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MQClientException {
         ApplicationContext context =
                 new AnnotationConfigApplicationContext(Application.class);
         Demo.Processor processor = (Demo.Processor) context.getBean("processor");
+
+        DefaultMQPushConsumer consumer = (DefaultMQPushConsumer) context.getBean("consumer");
+        consumer.registerMessageListener((MessageListenerOrderly) (msgs, ctx) -> {
+            System.out.printf(" Receive New Messages \n");
+            return ConsumeOrderlyStatus.SUCCESS;
+        });
+        consumer.start();
+
+        System.out.printf("rocketmq consumer Started.%n");
+
+
         try {
 
             TNonblockingServerTransport serverTransport = new TNonblockingServerSocket(9090);

@@ -37,11 +37,8 @@ public class MqConfig {
     @Bean(destroyMethod = "shutdown")
     DefaultMQPushConsumer consumer() throws MQClientException {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("demo_consumer");
-
         consumer.setNamesrvAddr(env.getProperty("mq.nameserv"));
-        consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
-
-        consumer.subscribe("DemoTopic", null);
+        consumer.subscribe("RR", null);
         return consumer;
     }
 
